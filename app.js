@@ -11,6 +11,7 @@
     })
     app.get('/api/beds',(req,res)=>
     {
+        res.set('Cache-control', 'public, max-age=2500')
         res.json(require('./data.json'));
     })
     app.listen(port,()=>{console.log(`Server Running at ${port}`)});
