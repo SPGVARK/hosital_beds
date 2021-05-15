@@ -5,6 +5,9 @@
         console.log("tested");
         next();
     })
+    app.get('/',(req,res)=>{
+        res.send("Hello World);
+    })
     app.get('/api/beds',(req,res)=>
     {
         res.json(require('./data.json'));
