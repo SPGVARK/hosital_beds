@@ -53,7 +53,7 @@ function GetData()
         }
         final_data.push(hospital);
         }
-        console.log(final_data)
+        //console.log(final_data)
         const json = JSON.stringify(final_data);
         fs.writeFile('data.json',json,'utf-8',()=>{console.log("done")})
     })
