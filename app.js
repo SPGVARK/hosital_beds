@@ -1,4 +1,5 @@
     const express = require('express');
+    const port = process.env.PORT||5000;
     const app = express();
     const test2 = require('./BedDataCollector')
     app.use('/api/*',(req,res,next)=>{
@@ -12,4 +13,4 @@
     {
         res.json(require('./data.json'));
     })
-    app.listen(process.env.PORT||5000);
+    app.listen(port,()=>{console.log(`Server Running at ${port}`)});
