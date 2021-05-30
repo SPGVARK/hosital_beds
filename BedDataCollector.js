@@ -3,10 +3,11 @@ const cheerio = require('cheerio')
 const fs = require('fs');
 const interval = 12;
 var final_data = [];
-function GetData()
+
+async function GetData()
 {
     axios.get('https://stopcorona.tn.gov.in/beds.php')
-    .then((data)=>{
+    .then(async data=>{
         const html = data.data;
         const $ = cheerio.load(html)
         var trIndex = 0,tdIndex = 0;
@@ -54,7 +55,7 @@ function GetData()
         final_data.push(hospital);
         }
         //console.log(final_data)
-        const json = JSON.stringify(final_data);
+        const json =  JSON.stringify(final_data);
         fs.writeFile('data.json',json,'utf-8',()=>{console.log("done")})
     })
     
