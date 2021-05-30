@@ -1,7 +1,9 @@
     const express = require('express');
+    const cors = require('cors')
     const app = express();
-    const cors = require('cors');
-    const test2 = require('./BedDataCollector')
+    const port = process.env.PORT||5000;
+    const BedCollector = require('./BedCollector')
+    app.use(cors())
     app.use('/api/*',(req,res,next)=>{
         console.log("tested");
         next();
@@ -10,4 +12,4 @@
     {
         res.json(require('./data.json'));
     })
-    app.listen(process.env.PORT||5000);
+    app.listen(port,()=>{console.log("Server At"+port)});
