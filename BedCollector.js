@@ -3,6 +3,7 @@ const fs = require('fs');
 var final = [];
 function GetData()
 {
+    final =[];
     axios.get('https://covidtnadu.com/data/covidtnadu.com/bed_data.json')
     .then((data)=>{
         const Data = (data.data)
@@ -34,9 +35,10 @@ function GetData()
             }
             final.push(hospital)
         });
-        const json =  JSON.stringify(final);
-        fs.writeFile('data.json',json,'utf-8',()=>{console.log("done")})
+            const json =  JSON.stringify(final,null,2);
+            fs.writeFile('data.json',json,{encoding:'utf8',flag:'w'},()=>{console.log("done")})
+        
     })
 }
 GetData();
-setInterval(GetData,4*3600*1000);
+setInterval(GetData,2*3600*1000);
