@@ -36,7 +36,10 @@ function GetData()
             final.push(hospital)
         });
             const json =  JSON.stringify(final,null,2);
-            fs.writeFile('data.json',json,{encoding:'utf8',flag:'w'},()=>{console.log("done")})
+            fs.unlink('data.json',()=>
+            {
+                fs.writeFile('data.json',json,{encoding:'utf8',flag:'w'},()=>{console.log("done")})
+            })
         
     })
 }
