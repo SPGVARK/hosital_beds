@@ -1,9 +1,10 @@
 const axios  = require('axios');
 const fs = require('fs');
-var final = [];
+
 function GetData()
 {
-    final =[];
+    var final = [];
+    final.length = 0;
     axios.get('https://covidtnadu.com/data/covidtnadu.com/bed_data.json')
     .then((data)=>{
         const Data = (data.data)
@@ -38,10 +39,11 @@ function GetData()
             const json =  JSON.stringify(final,null,2);
             fs.unlink('data.json',()=>
             {
-                fs.writeFile('data.json',json,{encoding:'utf8',flag:'w'},()=>{console.log("done")})
+                fs.writeFile('data.json',json,{encoding:'utf8',flag:'w'},()=>{console.log("done"); final.length = 0;})
             })
         
     })
+    final.length = 0;
 }
 GetData();
-setInterval(GetData,2*3600*1000);
+setInterval(GetData,60*1000);
