@@ -46,4 +46,4 @@ function GetData()
     final.length = 0;
 }
 GetData();
-setInterval(GetData,60*1000);
+setInterval(GetData,2*3600*1000);
